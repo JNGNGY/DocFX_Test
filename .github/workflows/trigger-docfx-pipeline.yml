@@ -1,0 +1,17 @@
+name: Trigger DocFX Pipeline
+
+on:
+  push:
+    branches:
+      - main  # oder ein anderer Branch, den du überwachen willst
+
+jobs:
+  trigger_pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call repository_dispatch on Main Repo
+        run: |
+          curl -X POST https://api.github.com/repos/Ximiq-AG/BKfoederaleArchitektur/dispatches \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{ secrets.DISPATCH_TOKEN }}" \
+            -d '{"event_type":"trigger-docfx"}'
