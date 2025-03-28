@@ -1,15 +1,15 @@
-name: Trigger DocFX Pipeline
+name: Trigger BKfoederaleArchitektur DocFX
 
 on:
   push:
     branches:
-      - main  # oder ein anderer Branch, den du überwachen willst
+      - main  # oder dein Branch
 
 jobs:
-  trigger_pipeline:
+  dispatch:
     runs-on: ubuntu-latest
     steps:
-      - name: Call repository_dispatch on Main Repo
+      - name: Trigger DocFX Build in BKfoederaleArchitektur
         run: |
           curl -X POST https://api.github.com/repos/Ximiq-AG/BKfoederaleArchitektur/dispatches \
             -H "Accept: application/vnd.github+json" \
